@@ -29,9 +29,9 @@ SinglyLinkedList.prototype.insert = function (value) {
 // Deletion by value
 SinglyLinkedList.prototype.remove = function (value) {
   let currentHead = this.head;
-  if (currentHead === value) {
+  if (currentHead.data === value) {
     this.head = currentHead.next;
-    this.head--;
+    this.size--;
   } else {
     let prev = currentHead;
     while (currentHead.next) {
@@ -45,6 +45,34 @@ SinglyLinkedList.prototype.remove = function (value) {
       currentHead = currentHead.next;
     }
   }
+};
+
+SinglyLinkedList.prototype.getFirst = function () {
+  return this.head.data;
+};
+
+SinglyLinkedList.prototype.getLast = function () {
+  let lastNode = this.head;
+  if (lastNode) {
+    while (lastNode.next) {
+      lastNode = lastNode.next;
+    }
+  }
+  return lastNode.data;
+};
+
+SinglyLinkedList.prototype.bufferData = function () {
+  let array = [];
+  let currentNode = this.head;
+  if (currentNode) {
+    while (currentNode.next) {
+      array.push(currentNode.data);
+      currentNode = currentNode.next;
+    }
+    array.push(currentNode.data);
+    return array;
+  }
+  return array;
 };
 
 module.exports = {
